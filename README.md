@@ -93,13 +93,13 @@ Using your bash prompt run the `/home/ur/ursim/install.sh` using the following c
 sudo ./install.sh
 ```
 
-If runit was installed properly before, the script should tun without any errors.
+If runit was installed properly before, the script should run without any errors.
 
 ## Copy Libraries to /usr/bin
 
 Since version 5.10 the extracted ursim folder contains the folder `usr/bin` with
 executable files that should be installed to `/usr/bin` but which are not 
-touched by the install script. Therfor we need to copy the files manually from
+touched by the provided install script. Therfore we need to copy the files manually from
 the usrim folder to `/usr/bin`.
 
 CD into your ursim folder and copy the files:
@@ -138,7 +138,8 @@ should output the following:
 For proper network support ursim requires the perl script `/sbin/net-statistics`.
 I'm not a linux expert and I have no idea where this file comes from so I
 simply copied this file from the URSim Lubuntu 14.04 VM to my Ubuntu 16.04
-installation. After you have copied the file, you should make it executable:
+installation. I added the file to the repository `src` folder so you can take
+it from there. After you have copied the file, you should make it executable:
 
 ```bash
 sudo chmod u=rwx,g=rx,o=rx /sbin/net-statistics
