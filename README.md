@@ -166,6 +166,10 @@ Hostname:ubuntu
 
 If you do not see this, then you need to edit the file `/sbin/net-statistics` to adjust the name of the network interface. Use `ifconfig` to find out the name. This is how I changed the file on my system:
 
+```bash
+sudo gedit /sbin/net-statistics
+```
+
 Before:
 
 ```perl
@@ -217,6 +221,14 @@ netmask 255.255.255.0
 After this change the perl script `/etc/network/interfaces` sucessfully printed
 out the right mode `static`.
 
+If you prefer DHCP you can configure the interface like this:
+
+```bash
+# The primary network interface
+auto ens33
+iface ens33 inet dhcp
+```
+
 ## Start URSim
 
 Now you can start URSim from the command line:
@@ -227,3 +239,33 @@ Now you can start URSim from the command line:
 
 URSim should start without any errors now. If you see errors, then you can
 check the log output on the console to get information what is going wrong.
+
+## Configure Firewall for remote control
+
+By default, Ubuntu has a built-in firewall: UFW, which stands for "Uncomplicated Firewall".
+To access the UR robot ports remotely, you need to properly configure this
+firewall. Here is the list of [UR client interfaces with port numbers](https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/).
+
+The quick and dirty solution is, to simply allow all incoming connections:
+
+```bash
+sudo ufw default allow incoming
+sudo ufw default allow outgoing
+```
+
+If you would like to have better security, you need deny all incoming connections
+and then properly allow all [ports]((https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/)) required by UR robot:
+
+```bash
+sudo ufw default deny incoming
+sudo ufw allow ssh
+sudo ufw allow 29999
+...
+```
+
+If you prefer a UI for firewall configuration, you can install a graphical
+frontend:
+
+```bash
+sudo apt install gufw
+```
