@@ -71,7 +71,7 @@ Hostname:ubuntu
 If you do not see this, then you need to edit the file `/sbin/net-statistics` to adjust the name of the network interface. Use `ifconfig` to find out the name. This is how I changed the file on my system:
 
 ```bash
-sudo gedit /sbin/net-statistics
+sudo vim /sbin/net-statistics
 ```
 
 Before:
@@ -109,7 +109,7 @@ need to edit your `/etc/network/interfaces` file, because the perl script
 parses the values from this file.
 
 ```bash
-sudo gedit /etc/network/interfaces
+sudo vim /etc/network/interfaces
 ```
 
 Because I use a static IP, I added the following lines:
@@ -118,7 +118,7 @@ Because I use a static IP, I added the following lines:
 # The primary network interface
 auto enp0s3
 iface enp0s3 inet static
-address 192.168.190.134
+address 10.0.2.15
 netmask 255.255.255.0
 ```
 
