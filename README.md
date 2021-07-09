@@ -2,7 +2,7 @@
 
 The intention of this repository is to describe the installation of different
 URSim versions on different Ubuntu versions. Currently this document
-describes how to have **URSim 5.10** running in **Ubuntu 18.04.** The VM hat comes
+describes how to have **URSim 5.10** running in **Ubuntu 18.04.** The VM that comes
 from Universal Robots is an 32-bit Lubuntu 14.04.
 
 If you have futher additions or an installation guide for a newer Ubuntu version,
@@ -10,7 +10,7 @@ feel free to create a pull request.
 
 ## Install Ubuntu 18.04
 
-Download and install Ubuntu 18.04 from to [Ubuntu 18.04 releases page](https://releases.ubuntu.com/18.04/). T
+Download and install Ubuntu 18.04 from to [Ubuntu 18.04 releases page](https://releases.ubuntu.com/18.04/).
 
 
 ## Download and unpack URSim 5.10
@@ -26,6 +26,8 @@ The scipt needs Java 6-8 installed, but automatically installs Java 11. If Java 
 ## Run URSim Install Script
 
 Using your bash prompt run the `install.sh` script using the following command.
+
+**Note: If you have ROS installed, running the following script will wipe your install.**
 
 ```bash
 sudo ./install.sh
