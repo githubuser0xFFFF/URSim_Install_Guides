@@ -1,12 +1,8 @@
 # URsim 5.10 Installation Guide for Ubuntu 18.04
 
-The intention of this repository is to describe the installation of different
-URSim versions on different Ubuntu versions. Currently this document
-describes how to have **URSim 5.10** running in **Ubuntu 18.04.** The VM that comes
-from Universal Robots is an 32-bit Lubuntu 14.04.
+Currently this document describes how to install **URSim 5.10** in **Ubuntu 18.04.** 
 
-If you have futher additions or an installation guide for a newer Ubuntu version,
-feel free to create a pull request.
+If you have futher additions, feel free to create a pull request.
 
 ## Install Ubuntu 18.04
 
