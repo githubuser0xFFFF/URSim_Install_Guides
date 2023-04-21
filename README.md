@@ -1,41 +1,24 @@
-# URsim 5.10 Installation Guide for Ubuntu 18.04
+# URsim 5.10 Installation Guide for Lubuntu 20.04
 
-Currently this document describes how to install **URSim 5.10** in **Ubuntu 18.04.** 
+## Install Lubuntu 20.04
 
-If you have futher additions, feel free to create a pull request.
+Download and install Lubuntu 20.04 from [Lubuntu releases page](https://cdimage.ubuntu.com/lubuntu/releases/).
 
-## Install Ubuntu 18.04
+## Download URSim 5.12.2 Debian package
 
-Download and install Ubuntu 18.04 from to [Ubuntu 18.04 releases page](https://releases.ubuntu.com/18.04/).
+You can download a 5.12.2 debian package from the following GitLab repository:
 
+https://gitlab.com/gitlabuser0xFFFF/ursim-debian-packages
 
-## Download and unpack URSim 5.10
+Browse the [CI/CD pipelines](https://gitlab.com/gitlabuser0xFFFF/ursim-debian-packages/-/pipelines?page=1&scope=branches#) and just download the [build artifacts](https://gitlab.com/gitlabuser0xFFFF/ursim-debian-packages/-/jobs/4153850155/artifacts/download?file_type=archive) for the **ubuntu-2004-ursim-5.12.2** branch.
 
-Download the URSim 5.10 packacge from the [Universal Robots Download Page](https://www.universal-robots.com/download/software-e-series/simulator-linux/offline-simulator-e-series-ur-sim-for-linux-5100/). You need a user account for this download.
+## Install the Debian package
 
-Extract the downloaded archive as per the instructions.
-
-# Dependency requirements
-
-The scipt needs Java 6-8 installed, but automatically installs Java 11. If Java 8 is installed prior to running the install script it won't install Java 11. Do so by running: `sudo apt install openjdk-8-jdk openjdk-8-jre`
-
-## Run URSim Install Script
-
-Using your bash prompt run the `install.sh` script using the following command.
-
-**Note: If you have ROS installed, running the following script will wipe your install.**
+Unpack the build artifacts archive and install the debian package:
 
 ```bash
-sudo ./install.sh
+sudo apt install ./*.deb
 ```
-
-## Add binaries to PATH
-
-```bash
-echo -e "\nPATH="$PATH:$HOME/ursim-5.10.0.106288/usr/bin" >> ~/.profile
-source ~/.profile
-```
-
 
 ## Provide net-statistics Perl Script
 
@@ -44,7 +27,7 @@ This seems to be a custom script generated for the URSim, but not provided in th
 Download the file, move it to the correct location and add executable permisions:
 
 ```bash
-wget https://raw.githubusercontent.com/ljden/URSim_Install_Guides/main/src/net-statistics
+wget https://github.com/githubuser0xFFFF/URSim_Install_Guides/raw/ubuntu-2004-ursim-5.12.2/src/net-statistics
 sudo mv net-statistics /sbin/
 sudo chmod +x /sbin/net-statistics
 ```
@@ -58,14 +41,14 @@ net-statistics
 It should print out something like this:
 
 ```bash
-Mode:static
+Mode:dhcp
 Net up
 Address:192.168.190.134
 Mask:255.255.255.0
 Gateway:
 nameserver1:
 nameserver2:
-Hostname:ubuntu
+Hostname:ursim
 ```
 
 If you do not see this, then you need to edit the file `/sbin/net-statistics` to adjust the name of the network interface. Use `ifconfig` to find out the name. This is how I changed the file on my system:
@@ -135,14 +118,36 @@ iface enp0s3 inet dhcp
 
 ## Start URSim
 
-Now you can start URSim from the command line:
+Now you can start URSim from the command line. The debian package installed
+ursim into `/opt/ursim` folder. So you can start it via:
 
 ```bash
-./start-ursim.sh UR5
+/opt/ursim/5.12.2/start-ursim.sh UR5
 ```
 
 URSim should start without any errors now. If you see errors, then you can
 check the log output on the console to get information what is going wrong.
+
+## Create desktop icon
+
+You can add a desktop icon to start URsim from desktop:
+
+```ini
+[Desktop Entry]
+Version=5.12.2.1101534
+Type=Application
+Terminal=false
+Name=ursim-5.12.2.1101534 UR5
+Exec=/opt/ursim/5.12.2/start-ursim.sh UR5
+Icon=/opt/ursim/5.12.2/ursim-icon.png
+
+```
+
+## Add to autostart
+
+If you would like to autostart URsim in your VM, just copy the just created
+icon file from the desktop to the `.config/autostart` folder in your home
+directory.
 
 ## Configure Firewall for remote control
 

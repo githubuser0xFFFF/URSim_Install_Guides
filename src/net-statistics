@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 # Replace eth1 with your right network interface
-my $interface = "eth1";
+my $interface = "ens33";
 my $isDhcp = 0;
 my $isStatic = 0;
 
