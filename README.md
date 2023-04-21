@@ -12,6 +12,10 @@ https://gitlab.com/gitlabuser0xFFFF/ursim-debian-packages
 
 Browse the [CI/CD pipelines](https://gitlab.com/gitlabuser0xFFFF/ursim-debian-packages/-/pipelines?page=1&scope=branches#) and just download the [build artifacts](https://gitlab.com/gitlabuser0xFFFF/ursim-debian-packages/-/jobs/4153850155/artifacts/download?file_type=archive) for the **ubuntu-2004-ursim-5.12.2** branch.
 
+```bash
+wget https://gitlab.com/gitlabuser0xFFFF/ursim-debian-packages/-/jobs/4153850155/artifacts/download?file_type=archive
+```
+
 ## Install the Debian package
 
 Unpack the build artifacts archive and install the debian package:
